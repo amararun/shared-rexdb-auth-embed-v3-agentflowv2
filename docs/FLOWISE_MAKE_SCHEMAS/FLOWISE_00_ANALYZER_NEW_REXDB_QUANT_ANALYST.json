@@ -1,0 +1,1060 @@
+{
+  "nodes": [
+    {
+      "id": "bufferMemory_0",
+      "position": {
+        "x": 28.660892851173784,
+        "y": 654.3759815333098
+      },
+      "type": "customNode",
+      "data": {
+        "id": "bufferMemory_0",
+        "label": "Buffer Memory",
+        "version": 2,
+        "name": "bufferMemory",
+        "type": "BufferMemory",
+        "baseClasses": [
+          "BufferMemory",
+          "BaseChatMemory",
+          "BaseMemory"
+        ],
+        "category": "Memory",
+        "description": "Retrieve chat messages stored in database",
+        "inputParams": [
+          {
+            "label": "Session Id",
+            "name": "sessionId",
+            "type": "string",
+            "description": "If not specified, a random id will be used. Learn <a target=\"_blank\" href=\"https://docs.flowiseai.com/memory#ui-and-embedded-chat\">more</a>",
+            "default": "",
+            "additionalParams": true,
+            "optional": true,
+            "id": "bufferMemory_0-input-sessionId-string"
+          },
+          {
+            "label": "Memory Key",
+            "name": "memoryKey",
+            "type": "string",
+            "default": "chat_history",
+            "additionalParams": true,
+            "id": "bufferMemory_0-input-memoryKey-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "sessionId": "",
+          "memoryKey": "chat_history"
+        },
+        "outputAnchors": [
+          {
+            "id": "bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory",
+            "name": "bufferMemory",
+            "label": "BufferMemory",
+            "description": "Retrieve chat messages stored in database",
+            "type": "BufferMemory | BaseChatMemory | BaseMemory"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 257,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 28.660892851173784,
+        "y": 654.3759815333098
+      },
+      "dragging": false
+    },
+    {
+      "id": "codeInterpreterE2B_0",
+      "position": {
+        "x": 1853.2041198884226,
+        "y": 528.1828031822765
+      },
+      "type": "customNode",
+      "data": {
+        "id": "codeInterpreterE2B_0",
+        "label": "Code Interpreter by E2B",
+        "version": 1,
+        "name": "codeInterpreterE2B",
+        "type": "CodeInterpreter",
+        "baseClasses": [
+          "CodeInterpreter",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Execute code in a sandbox environment",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "E2BApi"
+            ],
+            "optional": true,
+            "id": "codeInterpreterE2B_0-input-credential-credential"
+          },
+          {
+            "label": "Tool Name",
+            "name": "toolName",
+            "type": "string",
+            "description": "Specify the name of the tool",
+            "default": "code_interpreter",
+            "id": "codeInterpreterE2B_0-input-toolName-string"
+          },
+          {
+            "label": "Tool Description",
+            "name": "toolDesc",
+            "type": "string",
+            "rows": 4,
+            "description": "Specify the description of the tool",
+            "default": "Evaluates python code in a sandbox environment. The environment is long running and exists across multiple executions. You must send the whole script every time and print your outputs. Script should be pure python code that can be evaluated. It should be in python format NOT markdown. The code should NOT be wrapped in backticks. All python packages including requests, matplotlib, scipy, numpy, pandas, etc are available. Create and display chart using \"plt.show()\".",
+            "id": "codeInterpreterE2B_0-input-toolDesc-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "toolName": "code_interpreter",
+          "toolDesc": "Use this tool if user requests for charts or python charts or statistical analysis\n\nEvaluates python code in a sandbox environment. The environment is long running and exists across multiple executions. You must send the whole script every time and print your outputs. Script should be pure python code that can be evaluated. It should be in python format NOT markdown. The code should NOT be wrapped in backticks. All python packages including requests, matplotlib, scipy, numpy, pandas, etc are available. Create and display chart using \"plt.show()\"."
+        },
+        "outputAnchors": [
+          {
+            "id": "codeInterpreterE2B_0-output-codeInterpreterE2B-CodeInterpreter|Tool|StructuredTool|Runnable",
+            "name": "codeInterpreterE2B",
+            "label": "CodeInterpreter",
+            "description": "Execute code in a sandbox environment",
+            "type": "CodeInterpreter | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 556,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1853.2041198884226,
+        "y": 528.1828031822765
+      }
+    },
+    {
+      "id": "toolAgent_0",
+      "position": {
+        "x": 450.31374613407706,
+        "y": -363.4621227365867
+      },
+      "type": "customNode",
+      "data": {
+        "id": "toolAgent_0",
+        "label": "Tool Agent",
+        "version": 2,
+        "name": "toolAgent",
+        "type": "AgentExecutor",
+        "baseClasses": [
+          "AgentExecutor",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Agents",
+        "description": "Agent that uses Function Calling to pick the tools and args to call",
+        "inputParams": [
+          {
+            "label": "System Message",
+            "name": "systemMessage",
+            "type": "string",
+            "default": "You are a helpful AI assistant.",
+            "description": "If Chat Prompt Template is provided, this will be ignored",
+            "rows": 4,
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-systemMessage-string"
+          },
+          {
+            "label": "Max Iterations",
+            "name": "maxIterations",
+            "type": "number",
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-maxIterations-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Tools",
+            "name": "tools",
+            "type": "Tool",
+            "list": true,
+            "id": "toolAgent_0-input-tools-Tool"
+          },
+          {
+            "label": "Memory",
+            "name": "memory",
+            "type": "BaseChatMemory",
+            "id": "toolAgent_0-input-memory-BaseChatMemory"
+          },
+          {
+            "label": "Tool Calling Chat Model",
+            "name": "model",
+            "type": "BaseChatModel",
+            "description": "Only compatible with models that are capable of function calling: ChatOpenAI, ChatMistral, ChatAnthropic, ChatGoogleGenerativeAI, ChatVertexAI, GroqChat",
+            "id": "toolAgent_0-input-model-BaseChatModel"
+          },
+          {
+            "label": "Chat Prompt Template",
+            "name": "chatPromptTemplate",
+            "type": "ChatPromptTemplate",
+            "description": "Override existing prompt with Chat Prompt Template. Human Message must includes {input} variable",
+            "optional": true,
+            "id": "toolAgent_0-input-chatPromptTemplate-ChatPromptTemplate"
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "toolAgent_0-input-inputModeration-Moderation"
+          }
+        ],
+        "inputs": {
+          "tools": [
+            "{{codeInterpreterE2B_0.data.instance}}",
+            "{{customTool_0.data.instance}}",
+            "{{customTool_1.data.instance}}",
+            "{{customMCP_0.data.instance}}",
+            "{{customMCP_1.data.instance}}",
+            "{{customMCP_2.data.instance}}",
+            "{{customTool_2.data.instance}}",
+            "{{customMCP_3.data.instance}}"
+          ],
+          "memory": "{{bufferMemory_0.data.instance}}",
+          "model": "{{chatOpenRouter_0.data.instance}}",
+          "chatPromptTemplate": "",
+          "systemMessage": "When user asks what all can you do - it is referring to the tools at your disposal. Dont share general capabilities - share what all you can do with your tools - and start with the QuantStat Report, Technical Analysis Report and then the Yahoo Finance Data Pull and then other capabilities. Keep it concise.\n\nFor finding out today's date use the code interpreter tool and code below. This might be required if user asks for today's date or e.g  the user says to share prices for past 10 days ... or data is needed for past 5 years etc .. then do not use your knowledge base date as your training data is very old. We are currently in 2025 !\n\n\"from datetime import datetime today_date = datetime.now().date() today_date\"\n\n\nIf you get an error or something in the portfolio analysis  then don't make up a response . Share the error or the response you received with the user so the user can intelligently decide the next step or get in touch with me. Sometimes the error is due to incorrect yahoo finance symbol so make sure you are using the correct symbol or identify the symbol from your knowledge base and double check with user\n\nAll the portoflio analysis tools take Yahoo Finance Symbols. Find out the Yahoo Finance Symbol if user has not specified it but confirm it with user.\n\nYour Primary Tasks \n\n### 1.  Quantstats Tool\nDefault past 5 year period if user has not specified, but check with the user first if the date range and other parameters are ok. Share the actual date range you are planning to use and also the default risk free rate you are planning on .. don't just start running the tool\nShare report URL once generated. Just in case you are NOT able to get the report generated then share this url with user https://rex.tigzig.com/portfolio-analysis-form (to directly generate the report)\n\n\n### 2.  Technical Analysis tool \nIf the user has not specified a date , then suggest a useful date range ending today's like in example below.. and await confirmation from the user .. don't just start running the tool\nDaily: November 1, 2024 – April 24, 2025 (approx past 6 months) \nWeekly: April 1, 2023 – April 24, 2025 (approx past 2 years)\nShare report URL once generated and you get response from MCP tool. Just in case you are not able to get the report generated then share this url with user https://rex.tigzig.com/portfolio-analysis-form (- from where it can directly generate the report)\n\n### 3.  FFN Security Performance Report\nThis can take more than 2 Yahoo Finance Symbols. Just like the above 2 tools confirm the date ranges as well as risk free rate with users. If no dates specified then suggest past 10 years \n\n\n### 4. Database Analysis\n  - Prepare, execute, and validate SQL queries to answer the user's request accurately.  \n  - Ensure compliance with the database type (MySQL, PostgreSQL, SQLite, etc.).  \n  - Share the executed SQL query along with results for transparency.  \n Create the SQL Query:  \n   - Construct an SQL query that correctly addresses the user’s request.  \n   - Ensure accuracy and compliance with the provided database credentials and schema.  \n   - Identify and correct errors before execution. This includes:  \n     - Syntax errors, incorrect joins, missing tables, and data type mismatches.  \n     - Logical errors in aggregations, conditions, or calculations.  \n     - Common pitfalls like division by zero (use COALESCE(), NULLIF(), or appropriate handling).  \n     - Ensuring queries run in the correct order when multiple queries are needed. \n     - Make sure there is a LIMIT clause in any SELECT query. By default, use LIMIT 100 unless a smaller number is explicitly required for ranking or other purposes.\n   - If a request requires multiple queries for efficiency, break them into separate statements.  \n Execute the Query:  \n   - Use the appropriate database tool to execute the SQL query.  \n   - Handle any execution errors, refine the query as needed, and ensure optimal performance.  \n   - Share the final executed SQL query along with the results.  \n\n### 5. Python Charts and Statistical Analysis\n   - If the user requests a chart or statistical analysis, generate Python code for computation and visualization.  \n   - Execute Python-based visualizations using Matplotlib, Seaborn, or appropriate tools.  \n\n### 6 PDF report generation usign the markdown to pdf tool\n\nGeneral Chit-Chat:  If the user engages in casual conversation, gently redirect them to the primary task while maintaining a friendly and professional tone.  \n\n",
+          "inputModeration": "",
+          "maxIterations": "4"
+        },
+        "outputAnchors": [
+          {
+            "id": "toolAgent_0-output-toolAgent-AgentExecutor|BaseChain|Runnable",
+            "name": "toolAgent",
+            "label": "AgentExecutor",
+            "description": "Agent that uses Function Calling to pick the tools and args to call",
+            "type": "AgentExecutor | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 490,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 450.31374613407706,
+        "y": -363.4621227365867
+      }
+    },
+    {
+      "id": "customTool_0",
+      "position": {
+        "x": 1317.789215125652,
+        "y": 529.1986579377383
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customTool_0",
+        "label": "Custom Tool",
+        "version": 3,
+        "name": "customTool",
+        "type": "CustomTool",
+        "baseClasses": [
+          "CustomTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use custom tool you've created in Flowise within chatflow",
+        "inputParams": [
+          {
+            "label": "Select Tool",
+            "name": "selectedTool",
+            "type": "asyncOptions",
+            "loadMethod": "listTools",
+            "id": "customTool_0-input-selectedTool-asyncOptions"
+          },
+          {
+            "label": "Return Direct",
+            "name": "returnDirect",
+            "description": "Return the output of the tool directly to the user",
+            "type": "boolean",
+            "optional": true,
+            "id": "customTool_0-input-returnDirect-boolean"
+          },
+          {
+            "label": "Custom Tool Name",
+            "name": "customToolName",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolName-string"
+          },
+          {
+            "label": "Custom Tool Description",
+            "name": "customToolDesc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolDesc-string"
+          },
+          {
+            "label": "Custom Tool Schema",
+            "name": "customToolSchema",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolSchema-string"
+          },
+          {
+            "label": "Custom Tool Func",
+            "name": "customToolFunc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_0-input-customToolFunc-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "selectedTool": "0462b728-ac16-4db5-9516-2ef0cefdd92a",
+          "returnDirect": "",
+          "customToolName": "",
+          "customToolDesc": "",
+          "customToolSchema": "",
+          "customToolFunc": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customTool_0-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+            "name": "customTool",
+            "label": "CustomTool",
+            "description": "Use custom tool you've created in Flowise within chatflow",
+            "type": "CustomTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 377,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1317.789215125652,
+        "y": 529.1986579377383
+      },
+      "dragging": false
+    },
+    {
+      "id": "customTool_1",
+      "position": {
+        "x": 864.0603423514693,
+        "y": 534.9509239463218
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customTool_1",
+        "label": "Custom Tool",
+        "version": 3,
+        "name": "customTool",
+        "type": "CustomTool",
+        "baseClasses": [
+          "CustomTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use custom tool you've created in Flowise within chatflow",
+        "inputParams": [
+          {
+            "label": "Select Tool",
+            "name": "selectedTool",
+            "type": "asyncOptions",
+            "loadMethod": "listTools",
+            "id": "customTool_1-input-selectedTool-asyncOptions"
+          },
+          {
+            "label": "Return Direct",
+            "name": "returnDirect",
+            "description": "Return the output of the tool directly to the user",
+            "type": "boolean",
+            "optional": true,
+            "id": "customTool_1-input-returnDirect-boolean"
+          },
+          {
+            "label": "Custom Tool Name",
+            "name": "customToolName",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolName-string"
+          },
+          {
+            "label": "Custom Tool Description",
+            "name": "customToolDesc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolDesc-string"
+          },
+          {
+            "label": "Custom Tool Schema",
+            "name": "customToolSchema",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolSchema-string"
+          },
+          {
+            "label": "Custom Tool Func",
+            "name": "customToolFunc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_1-input-customToolFunc-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "selectedTool": "e7ede3b5-369c-4b48-a82e-86114de7a902",
+          "returnDirect": "",
+          "customToolName": "",
+          "customToolDesc": "",
+          "customToolSchema": "",
+          "customToolFunc": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customTool_1-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+            "name": "customTool",
+            "label": "CustomTool",
+            "description": "Use custom tool you've created in Flowise within chatflow",
+            "type": "CustomTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 377,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 864.0603423514693,
+        "y": 534.9509239463218
+      },
+      "dragging": false
+    },
+    {
+      "id": "customMCP_0",
+      "position": {
+        "x": 1113.4802789430269,
+        "y": -300.6550303635146
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customMCP_0",
+        "label": "Custom MCP",
+        "version": 1,
+        "name": "customMCP",
+        "type": "Custom MCP Tool",
+        "baseClasses": [
+          "Tool"
+        ],
+        "category": "Tools (MCP)",
+        "description": "Custom MCP Config",
+        "inputParams": [
+          {
+            "label": "MCP Server Config",
+            "name": "mcpServerConfig",
+            "type": "code",
+            "hideCodeExecute": true,
+            "placeholder": "{\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/path/to/allowed/files\"]\n}",
+            "id": "customMCP_0-input-mcpServerConfig-code"
+          },
+          {
+            "label": "Available Actions",
+            "name": "mcpActions",
+            "type": "asyncMultiOptions",
+            "loadMethod": "listActions",
+            "refresh": true,
+            "id": "customMCP_0-input-mcpActions-asyncMultiOptions"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "mcpServerConfig": "{\n  \"url\": \"https://ta.hosting.tigzig.com/mcp\"\n\n}",
+          "mcpActions": "[\"create_technical_analysis\"]"
+        },
+        "outputAnchors": [
+          {
+            "id": "customMCP_0-output-customMCP-Tool",
+            "name": "customMCP",
+            "label": "Custom MCP Tool",
+            "description": "Custom MCP Config",
+            "type": "Tool"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 576,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1113.4802789430269,
+        "y": -300.6550303635146
+      }
+    },
+    {
+      "id": "customMCP_1",
+      "position": {
+        "x": 1903.2146443382253,
+        "y": -278.1084716382336
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customMCP_1",
+        "label": "Custom MCP",
+        "version": 1,
+        "name": "customMCP",
+        "type": "Custom MCP Tool",
+        "baseClasses": [
+          "Tool"
+        ],
+        "category": "Tools (MCP)",
+        "description": "Custom MCP Config",
+        "inputParams": [
+          {
+            "label": "MCP Server Config",
+            "name": "mcpServerConfig",
+            "type": "code",
+            "hideCodeExecute": true,
+            "placeholder": "{\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/path/to/allowed/files\"]\n}",
+            "id": "customMCP_1-input-mcpServerConfig-code"
+          },
+          {
+            "label": "Available Actions",
+            "name": "mcpActions",
+            "type": "asyncMultiOptions",
+            "loadMethod": "listActions",
+            "refresh": true,
+            "id": "customMCP_1-input-mcpActions-asyncMultiOptions"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "mcpServerConfig": "{\n  \"url\": \"https://quantstats.hosting.tigzig.com/mcp\"\n\n}",
+          "mcpActions": "[\"create_portfolio_analysis\"]"
+        },
+        "outputAnchors": [
+          {
+            "id": "customMCP_1-output-customMCP-Tool",
+            "name": "customMCP",
+            "label": "Custom MCP Tool",
+            "description": "Custom MCP Config",
+            "type": "Tool"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 576,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1903.2146443382253,
+        "y": -278.1084716382336
+      }
+    },
+    {
+      "id": "customMCP_2",
+      "position": {
+        "x": 1510.5215582745493,
+        "y": -299.1971096342808
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customMCP_2",
+        "label": "Custom MCP",
+        "version": 1,
+        "name": "customMCP",
+        "type": "Custom MCP Tool",
+        "baseClasses": [
+          "Tool"
+        ],
+        "category": "Tools (MCP)",
+        "description": "Custom MCP Config",
+        "inputParams": [
+          {
+            "label": "MCP Server Config",
+            "name": "mcpServerConfig",
+            "type": "code",
+            "hideCodeExecute": true,
+            "placeholder": "{\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/path/to/allowed/files\"]\n}",
+            "id": "customMCP_2-input-mcpServerConfig-code"
+          },
+          {
+            "label": "Available Actions",
+            "name": "mcpActions",
+            "type": "asyncMultiOptions",
+            "loadMethod": "listActions",
+            "refresh": true,
+            "id": "customMCP_2-input-mcpActions-asyncMultiOptions"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "mcpServerConfig": "{\n  \"url\": \"https://yfin.hosting.tigzig.com/mcp\"\n\n}",
+          "mcpActions": "[\"get_all_prices\",\"get_balance_sheet_excel\",\"get_cash_flow_excel\",\"get_detailed_info\",\"get_income_statement_excel\",\"get_market_data\",\"get_quarterly_income_statement_excel\"]"
+        },
+        "outputAnchors": [
+          {
+            "id": "customMCP_2-output-customMCP-Tool",
+            "name": "customMCP",
+            "label": "Custom MCP Tool",
+            "description": "Custom MCP Config",
+            "type": "Tool"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 744,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1510.5215582745493,
+        "y": -299.1971096342808
+      }
+    },
+    {
+      "id": "customTool_2",
+      "position": {
+        "x": 487.1164894510773,
+        "y": 545.1252027887465
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customTool_2",
+        "label": "Custom Tool",
+        "version": 3,
+        "name": "customTool",
+        "type": "CustomTool",
+        "baseClasses": [
+          "CustomTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use custom tool you've created in Flowise within chatflow",
+        "inputParams": [
+          {
+            "label": "Select Tool",
+            "name": "selectedTool",
+            "type": "asyncOptions",
+            "loadMethod": "listTools",
+            "id": "customTool_2-input-selectedTool-asyncOptions"
+          },
+          {
+            "label": "Return Direct",
+            "name": "returnDirect",
+            "description": "Return the output of the tool directly to the user",
+            "type": "boolean",
+            "optional": true,
+            "id": "customTool_2-input-returnDirect-boolean"
+          },
+          {
+            "label": "Custom Tool Name",
+            "name": "customToolName",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_2-input-customToolName-string"
+          },
+          {
+            "label": "Custom Tool Description",
+            "name": "customToolDesc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_2-input-customToolDesc-string"
+          },
+          {
+            "label": "Custom Tool Schema",
+            "name": "customToolSchema",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_2-input-customToolSchema-string"
+          },
+          {
+            "label": "Custom Tool Func",
+            "name": "customToolFunc",
+            "type": "string",
+            "hidden": true,
+            "id": "customTool_2-input-customToolFunc-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "selectedTool": "dc9154f7-868f-456f-932f-6cbc581c25fd",
+          "returnDirect": "",
+          "customToolName": "",
+          "customToolDesc": "",
+          "customToolSchema": "",
+          "customToolFunc": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customTool_2-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+            "name": "customTool",
+            "label": "CustomTool",
+            "description": "Use custom tool you've created in Flowise within chatflow",
+            "type": "CustomTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 377,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 487.1164894510773,
+        "y": 545.1252027887465
+      },
+      "dragging": false
+    },
+    {
+      "id": "customMCP_3",
+      "position": {
+        "x": 2348.413033488325,
+        "y": -275.94487188482225
+      },
+      "type": "customNode",
+      "data": {
+        "id": "customMCP_3",
+        "label": "Custom MCP (3)",
+        "version": 1,
+        "name": "customMCP",
+        "type": "Custom MCP Tool",
+        "baseClasses": [
+          "Tool"
+        ],
+        "category": "Tools (MCP)",
+        "description": "Custom MCP Config",
+        "inputParams": [
+          {
+            "label": "MCP Server Config",
+            "name": "mcpServerConfig",
+            "type": "code",
+            "hideCodeExecute": true,
+            "placeholder": "{\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/path/to/allowed/files\"]\n}",
+            "id": "customMCP_3-input-mcpServerConfig-code",
+            "display": true
+          },
+          {
+            "label": "Available Actions",
+            "name": "mcpActions",
+            "type": "asyncMultiOptions",
+            "loadMethod": "listActions",
+            "refresh": true,
+            "id": "customMCP_3-input-mcpActions-asyncMultiOptions",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "mcpServerConfig": "{\n  \"url\": \"https://ffn.hosting.tigzig.com/mcp\"\n\n}",
+          "mcpActions": "[\"analyze_portfolio\"]"
+        },
+        "outputAnchors": [
+          {
+            "id": "customMCP_3-output-customMCP-Tool",
+            "name": "customMCP",
+            "label": "Custom MCP Tool",
+            "description": "Custom MCP Config",
+            "type": "Tool"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 576,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 2348.413033488325,
+        "y": -275.94487188482225
+      }
+    },
+    {
+      "id": "chatOpenRouter_0",
+      "position": {
+        "x": -107.16127343154241,
+        "y": -252.3985840581822
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chatOpenRouter_0",
+        "label": "ChatOpenRouter",
+        "version": 1,
+        "name": "chatOpenRouter",
+        "type": "ChatOpenRouter",
+        "baseClasses": [
+          "ChatOpenRouter",
+          "BaseChatModel",
+          "BaseLanguageModel",
+          "Runnable"
+        ],
+        "category": "Chat Models",
+        "description": "Wrapper around Open Router Inference API",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "openRouterApi"
+            ],
+            "optional": true,
+            "id": "chatOpenRouter_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "openai/gpt-3.5-turbo",
+            "id": "chatOpenRouter_0-input-modelName-string",
+            "display": true
+          },
+          {
+            "label": "Temperature",
+            "name": "temperature",
+            "type": "number",
+            "step": 0.1,
+            "default": 0.9,
+            "optional": true,
+            "id": "chatOpenRouter_0-input-temperature-number",
+            "display": true
+          },
+          {
+            "label": "Streaming",
+            "name": "streaming",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-streaming-boolean",
+            "display": true
+          },
+          {
+            "label": "Max Tokens",
+            "name": "maxTokens",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-maxTokens-number",
+            "display": true
+          },
+          {
+            "label": "Top Probability",
+            "name": "topP",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-topP-number",
+            "display": true
+          },
+          {
+            "label": "Frequency Penalty",
+            "name": "frequencyPenalty",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-frequencyPenalty-number",
+            "display": true
+          },
+          {
+            "label": "Presence Penalty",
+            "name": "presencePenalty",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-presencePenalty-number",
+            "display": true
+          },
+          {
+            "label": "Timeout",
+            "name": "timeout",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-timeout-number",
+            "display": true
+          },
+          {
+            "label": "BasePath",
+            "name": "basepath",
+            "type": "string",
+            "optional": true,
+            "default": "https://openrouter.ai/api/v1",
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-basepath-string",
+            "display": true
+          },
+          {
+            "label": "BaseOptions",
+            "name": "baseOptions",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOpenRouter_0-input-baseOptions-json",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Cache",
+            "name": "cache",
+            "type": "BaseCache",
+            "optional": true,
+            "id": "chatOpenRouter_0-input-cache-BaseCache",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "cache": "",
+          "modelName": "openai/gpt-4.1-mini",
+          "temperature": "0.3",
+          "streaming": true,
+          "maxTokens": "",
+          "topP": "",
+          "frequencyPenalty": "",
+          "presencePenalty": "",
+          "timeout": "",
+          "basepath": "https://openrouter.ai/api/v1",
+          "baseOptions": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "chatOpenRouter_0-output-chatOpenRouter-ChatOpenRouter|BaseChatModel|BaseLanguageModel|Runnable",
+            "name": "chatOpenRouter",
+            "label": "ChatOpenRouter",
+            "description": "Wrapper around Open Router Inference API",
+            "type": "ChatOpenRouter | BaseChatModel | BaseLanguageModel | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 581,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -107.16127343154241,
+        "y": -252.3985840581822
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "bufferMemory_0",
+      "sourceHandle": "bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-memory-BaseChatMemory",
+      "type": "buttonedge",
+      "id": "bufferMemory_0-bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory-toolAgent_0-toolAgent_0-input-memory-BaseChatMemory"
+    },
+    {
+      "source": "codeInterpreterE2B_0",
+      "sourceHandle": "codeInterpreterE2B_0-output-codeInterpreterE2B-CodeInterpreter|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "codeInterpreterE2B_0-codeInterpreterE2B_0-output-codeInterpreterE2B-CodeInterpreter|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customTool_0",
+      "sourceHandle": "customTool_0-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customTool_0-customTool_0-output-customTool-CustomTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customTool_1",
+      "sourceHandle": "customTool_1-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customTool_1-customTool_1-output-customTool-CustomTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customMCP_0",
+      "sourceHandle": "customMCP_0-output-customMCP-Tool",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customMCP_0-customMCP_0-output-customMCP-Tool-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customMCP_1",
+      "sourceHandle": "customMCP_1-output-customMCP-Tool",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customMCP_1-customMCP_1-output-customMCP-Tool-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customMCP_2",
+      "sourceHandle": "customMCP_2-output-customMCP-Tool",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customMCP_2-customMCP_2-output-customMCP-Tool-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customTool_2",
+      "sourceHandle": "customTool_2-output-customTool-CustomTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customTool_2-customTool_2-output-customTool-CustomTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "customMCP_3",
+      "sourceHandle": "customMCP_3-output-customMCP-Tool",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "customMCP_3-customMCP_3-output-customMCP-Tool-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "chatOpenRouter_0",
+      "sourceHandle": "chatOpenRouter_0-output-chatOpenRouter-ChatOpenRouter|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-model-BaseChatModel",
+      "type": "buttonedge",
+      "id": "chatOpenRouter_0-chatOpenRouter_0-output-chatOpenRouter-ChatOpenRouter|BaseChatModel|BaseLanguageModel|Runnable-toolAgent_0-toolAgent_0-input-model-BaseChatModel"
+    }
+  ]
+}

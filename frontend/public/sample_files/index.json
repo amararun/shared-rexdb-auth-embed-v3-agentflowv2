@@ -1,0 +1,82 @@
+[
+  {
+    "name": "RBI_CARDS_ATM_POS_JUL2025.txt",
+    "displayName": "RBI Cards & ATM Statistics",
+    "size": "14 KB",
+    "rowCount": 64,
+    "rowCountDisplay": "64 Rows",
+    "columnCount": 29,
+    "description": "Reserve Bank of India's monthly statistics report on ATMs, credit cards, debit cards, and POS transactions for July 2025.",
+    "analysisPrompt": "The data comes from the Reserve Bank of India's monthly statistics, covering around 60-70 banks. It includes key metrics on ATMs, credit cards, debit cards, and POS transactions. The dataset provided is for July 2025.\n\nObjective:  \nRank the top banks in the credit card segment using a scoring system based on relevant metrics. Derive meaningful ratios and derived variables to determine rankings - give some meaningful names to derived variables.\n\nRequirements:  \n- Develop a ranking mechanism or scoring system.  \n- Provide the top 10 banks based on the final ranking.  \n- Share detailed methodology, formulas used, calculations and assumptions \n- Additional insights from your analysis \n- Include at least 3 charts to visualize insights -separate charts please"
+  },
+  {
+    "name": "TDF_Riders_History_men.csv",
+    "displayName": "Tour de France - Riders History",
+    "size": "974 KB",
+    "rowCount": 10179,
+    "rowCountDisplay": "10K Rows",
+    "columnCount": 14,
+    "description": "Tour de France rider rankings and finish times from 1903 to 2025.",
+    "analysisPrompt": "For Tour De France data - Show the Rank 1 riders from 2015 to 2025 , with their total distance (km), total time, and average speed (km/h) and the team. .. Table in Markdown text format\nCreate a chart of riders who have won 3 or more times across history, showing how many wins each has"
+  },
+  {
+    "name": "ipl.txt.gz",
+    "displayName": "IPL - Indian Premier League",
+    "size": "41 MB",
+    "sizeCompressed": "2.1 MB",
+    "rowCount": 278206,
+    "rowCountDisplay": "278K Rows",
+    "columnCount": 23,
+    "description": "Ball-by-ball IPL cricket data from 2003 till Sep 2025",
+    "analysisPrompt": "Show Top 10 strikers by total runs off the bat, matches and overs played, and run rate (based on runs off the bat) per match and per over. Table in Markdown text format. Add 3 visualizations to show insights.",
+    "fileFormat": "gz",
+    "source": "github_release",
+    "githubReleaseUrl": "https://github.com/amararun/tigzig-file-uploads/releases/download/v1.0/ipl.txt.gz",
+    "originalFileName": "ipl.txt"
+  },
+  {
+    "name": "odi.csv.gz",
+    "displayName": "ODI - One Day International",
+    "size": "206 MB",
+    "sizeCompressed": "9.8 MB",
+    "rowCount": 1592013,
+    "rowCountDisplay": "1.6 Million",
+    "columnCount": 23,
+    "description": "ODI cricket match data with ball-by-ball records data from 2003 till Sep 2025",
+    "analysisPrompt": "Show Top 10 strikers by total runs off the bat, matches and overs played, and run rate (based on runs off the bat) per match and per over. Table in Markdown text format. Add 3 visualizations to show insights.",
+    "fileFormat": "gz",
+    "source": "github_release",
+    "githubReleaseUrl": "https://github.com/amararun/tigzig-file-uploads/releases/download/v1.0/odi.csv.gz",
+    "originalFileName": "odi.csv"
+  },
+  {
+    "name": "odi_t20_county_eng_ipl.csv.gz",
+    "displayName": "Cricket Combined - ODI, T20, County & IPL",
+    "size": "697 MB",
+    "sizeCompressed": "31.8 MB",
+    "rowCount": 5201256,
+    "rowCountDisplay": "5.2 Million",
+    "columnCount": 23,
+    "description": "ODI, T20, County/English cricket, and IPL. Ball-by-ball data from 2003 till Sep 2025",
+    "analysisPrompt": "Show Top 10 strikers by total runs off the bat, matches and overs played, and run rate (based on runs off the bat) per match and per over. For each match type, create a separate table. All tables in Markdown text format. Add 3 visualizations to show insights.",
+    "fileFormat": "gz",
+    "source": "github_release",
+    "githubReleaseUrl": "https://github.com/amararun/tigzig-file-uploads/releases/download/v1.0/odi_t20_county_eng_ipl.csv.gz",
+    "originalFileName": "odi_t20_county_eng_ipl.csv"
+  },
+  {
+    "name": "odi_t20_odm_mdm_test_t20blast_county_ipl.txt.gz",
+    "displayName": "Cricket Extended - ODI, T20, ODM, MDM, Test, T20 Blast, County & IPL",
+    "size": "1.6 GB",
+    "sizeCompressed": "70 MB",
+    "rowCount": 11800000,
+    "rowCountDisplay": "11.8 Million",
+    "columnCount": 23,
+    "description": "Ball-by-ball data. From 2003 till Sep 2025",
+    "analysisPrompt": "Show Top 10 strikers by total runs off the bat, matches and overs played, and run rate (based on runs off the bat) per match and per over. For each match type, create a separate table. All tables in Markdown text format. Add 3 visualizations to show insights.",
+    "fileFormat": "gz",
+    "source": "github_release",
+    "githubReleaseUrl": "https://github.com/amararun/tigzig-file-uploads/releases/download/v1.0/odi_t20_odm_mdm_test_t20blast_county_ipl.txt.gz",
+    "originalFileName": "odi_t20_odm_mdm_test_t20blast_county_ipl.txt"
+  }
+]
