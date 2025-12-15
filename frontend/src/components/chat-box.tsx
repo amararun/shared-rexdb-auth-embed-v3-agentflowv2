@@ -19,7 +19,7 @@ const extractChatflowId = (url: string): string => {
 const getImageEndpoint = (imageData: string, isAdvanced: boolean, chatId: string): string => {
   // Log the environment variable value to help diagnose issues
 console.log('VITE_FLOWISE_IMAGE_URL value:', import.meta.env.VITE_FLOWISE_IMAGE_URL);
-const baseUrl = import.meta.env.VITE_FLOWISE_IMAGE_URL || 'https://flowise-coolify.hosting.tigzig.com/api/v1/get-upload-file';
+const baseUrl = import.meta.env.VITE_FLOWISE_IMAGE_URL || 'https://flowise-coolify.tigzig.com/api/v1/get-upload-file';
   
   // Get the appropriate endpoint based on whether it's advanced or not
   const endpoint = isAdvanced ? flowiseAdvAnalystEndpoint.url : FLOWISE_API_ENDPOINT;

@@ -217,7 +217,7 @@ Return ONLY the JSON object, no explanations or additional text.`;
     console.log('Making OpenAI API request via proxy server...');
     
     // Get the RT endpoint from environment variables
-    const RT_ENDPOINT = import.meta.env.VITE_RT_ENDPOINT || 'https://rtephemeral.hosting.tigzig.com';
+    const RT_ENDPOINT = import.meta.env.VITE_RT_ENDPOINT || 'https://rtephemeral.tigzig.com';
     console.log('Using RT endpoint:', RT_ENDPOINT);
 
     interface OpenAIRequestBody {
